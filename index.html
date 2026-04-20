@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxe - Premium Jewelry</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* ============ HEADER & NAVIGATION ============ */
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #d4af37;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #d4af37;
+            border-radius: 3px;
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23001a33" width="1200" height="600"/><circle cx="600" cy="300" r="150" fill="%23d4af37" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #d4af37;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            background: #d4af37;
+            color: #1a1a1a;
+            text-decoration: none;
+            border: 2px solid #d4af37;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: #d4af37;
+        }
+
+        /* ============ FEATURED PRODUCTS ============ */
+        .featured {
+            padding: 4rem 2rem;
+            background: #f9f9f9;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #d4af37;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #e8d5b5 0%, #c0a976 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: #1a1a1a;
+            color: #d4af37;
+            border: 2px solid #d4af37;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: #d4af37;
+            color: #1a1a1a;
+        }
+
+        /* ============ ABOUT SECTION ============ */
+        .about {
+            padding: 4rem 2rem;
+            background: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .about-content p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #d4af37 0%, #a68860 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ============ CONTACT SECTION ============ */
+        .contact {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item h3 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-item p {
+            color: #ccc;
+        }
+
+        .contact-form {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #d4af37;
+            color: white;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            grid-column: 1 / -1;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            padding: 1rem;
+            background: #d4af37;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #f4d03f;
+            transform: scale(1.02);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: #0d0d0d;
+            color: #ccc;
+            padding: 2rem;
+            text-align: center;
+            border-top: 2px solid #d4af37;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
+
+        /* ============ RESPONSIVE DESIGN ============ */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #1a1a1a;
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group textarea {
+                grid-column: auto;
+            }
+
+            .submit-btn {
+                grid-column: auto;
+            }
+        }
+
+        /* ============ CHATBOT STYLES ============ */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            font-family: inherit;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #d4af37 0%, #a68860 100%);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .chat-box {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            animation: slideUp 0.3s ease;
+        }
+
+        .chat-box.active {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .close-chat:hover {
+            transform: rotate(90deg);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 0.5rem;
+        }
+
+        .message.bot {
+            justify-content: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-text {
+            max-width: 70%;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .message.bot .message-text {
+            background: #f0f0f0;
+            color: #333;
+            border-bottom-left-radius: 0;
+        }
+
+        .message.user .message-text {
+            background: #d4af37;
+            color: #1a1a1a;
+            border-bottom-right-radius: 0;
+            font-weight: 500;
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .quick-reply-btn {
+            background: #f0f0f0;
+            border: 1px solid #d4af37;
+            color: #1a1a1a;
+            padding: 0.6rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .quick-reply-btn:hover {
+            background: #d4af37;
+            color: #1a1a1a;
+        }
+
+        .chat-input-area {
+            padding: 1rem;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #d4af37;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: #a68860;
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+        }
+
+        .send-btn {
+            background: #d4af37;
+            color: #1a1a1a;
+            border: none;
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .send-btn:hover {
+            background: #a68860;
+        }
+
+        .input-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .input-form input {
+            padding: 0.8rem;
+            border: 1px solid #d4af37;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .input-form input:focus {
+            outline: none;
+            border-color: #a68860;
+        }
+
+        .input-form button {
+            padding: 0.8rem;
+            background: #d4af37;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .input-form button:hover {
+            background: #a68860;
+        }
+
+        .whatsapp-link {
+            color: #25D366;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .whatsapp-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .about-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-image {
+                height: 250px;
+                font-size: 3rem;
+            }
+
+            .chat-box {
+                width: 90vw;
+                height: 70vh;
+                bottom: 70px;
+                right: 5vw;
+                left: auto;
+            }
+
+            .chat-toggle {
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <div class="navbar">
+            <div class="logo">✨ LUXE</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#featured">Collection</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>ELEGANCE REDEFINED</h1>
+            <p>Discover our exclusive collection of handcrafted jewelry</p>
+            <a href="#featured" class="btn">SHOP NOW</a>
+        </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="featured" id="featured">
+        <h2 class="section-title">Featured Collection</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">💍</div>
+                <div class="product-info">
+                    <h3 class="product-name">Diamond Ring</h3>
+                    <p class="product-price">$2,499</p>
+                    <p class="product-desc">Stunning 18K gold ring with certified diamond</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">👑</div>
+                <div class="product-info">
+                    <h3 class="product-name">Royal Tiara</h3>
+                    <p class="product-price">$3,899</p>
+                    <p class="product-desc">Premium sapphire and pearl tiara</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">⌚</div>
+                <div class="product-info">
+                    <h3 class="product-name">Gold Watch</h3>
+                    <p class="product-price">$1,899</p>
+                    <p class="product-desc">Luxury timepiece with genuine gold</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">📿</div>
+                <div class="product-info">
+                    <h3 class="product-name">Pearl Necklace</h3>
+                    <p class="product-price">$1,299</p>
+                    <p class="product-desc">Elegant South Sea pearl necklace</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">💎</div>
+                <div class="product-info">
+                    <h3 class="product-name">Emerald Earrings</h3>
+                    <p class="product-price">$899</p>
+                    <p class="product-desc">Authentic Colombian emerald earrings</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🔱</div>
+                <div class="product-info">
+                    <h3 class="product-name">Sapphire Pendant</h3>
+                    <p class="product-price">$1,499</p>
+                    <p class="product-desc">Rare blue sapphire on platinum chain</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>About Our Jewelry</h2>
+            <p>For over 25 years, LUXE has been synonymous with elegance, quality, and timeless beauty. Each piece in our collection is meticulously crafted by master artisans using only the finest materials.</p>
+            <p>We believe that jewelry is more than an accessory—it's a statement, a memory, and a treasure passed down through generations.</p>
+            <p>Our commitment to excellence and sustainability ensures that every purchase supports ethical sourcing and fair trade practices.</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+        <div class="about-image">✨</div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <h2 class="section-title" style="color: white;">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-item">
+                <h3>📍 Visit Us</h3>
+                <p>123 Jewelry Lane, Diamond City, DC 10001</p>
+            </div>
+            <div class="contact-item">
+                <h3>📞 Call Us</h3>
+                <p>+1 (555) 123-4567</p>
+            </div>
+            <div class="contact-item">
+                <h3>📧 Email Us</h3>
+                <p>info@luxejewelry.com</p>
+            </div>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">SEND MESSAGE</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 LUXE Jewelry. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+    </footer>
+
+    <!-- CHATBOT -->
+    <div class="chatbot-container">
+        <button class="chat-toggle" id="chatToggle">💬</button>
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                <h3>✨ LUXE Support</h3>
+                <button class="close-chat" id="closeChat">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type message...">
+                <button class="send-btn" id="sendBtn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chatbot Logic
+        const chatToggle = document.getElementById('chatToggle');
+        const chatBox = document.getElementById('chatBox');
+        const closeChat = document.getElementById('closeChat');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        let isFirstMessage = true;
+        let userPhone = null;
+
+        // Toggle chat box
+        chatToggle.addEventListener('click', () => {
+            chatBox.classList.toggle('active');
+            if (chatBox.classList.contains('active') && isFirstMessage) {
+                setTimeout(() => showBotMessage('Hello! 👋 Welcome to LUXE Jewelry. How can I help you today?', true), 300);
+                isFirstMessage = false;
+            }
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatBox.classList.remove('active');
+        });
+
+        // Send message
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            chatInput.value = '';
+
+            // Simulate bot response delay
+            setTimeout(() => handleBotResponse(message), 500);
+        }
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.innerHTML = `<div class="message-text">${text}</div>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showBotMessage(text, isInitial = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot';
+            messageDiv.innerHTML = `<div class="message-text">${text}</div>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            if (isInitial) {
+                setTimeout(showQuickReplies, 800);
+            }
+        }
+
+        function showQuickReplies() {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot';
+            messageDiv.innerHTML = `
+                <div class="quick-replies">
+                    <button class="quick-reply-btn">💍 Product Inquiry</button>
+                    <button class="quick-reply-btn">❓ Ask Questions</button>
+                    <button class="quick-reply-btn">📞 Contact Support</button>
+                    <button class="quick-reply-btn">🛍️ Order Status</button>
+                </div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Add event listeners to quick reply buttons
+            const quickReplyBtns = messageDiv.querySelectorAll('.quick-reply-btn');
+            quickReplyBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    addMessage(this.textContent, 'user');
+                    setTimeout(() => handleBotResponse(this.textContent), 500);
+                });
+            });
+        }
+
+        function handleBotResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+
+            if (lowerMessage.includes('product') || lowerMessage.includes('inquiry')) {
+                showBotMessage('Great! We have an amazing collection of jewelry including:');
+                setTimeout(() => {
+                    showBotMessage('💍 Rings, 👑 Tiaras, ⌚ Watches, 📿 Necklaces, 💎 Earrings, 🔱 Pendants\n\nWhich product interests you?');
+                }, 600);
+            } else if (lowerMessage.includes('contact') || lowerMessage.includes('support') || lowerMessage.includes('phone')) {
+                showPhoneForm();
+            } else if (lowerMessage.includes('order') || lowerMessage.includes('status')) {
+                showBotMessage('To check your order status, please provide your order number or contact us at <a href="https://wa.me/919177740833" class="whatsapp-link">WhatsApp</a>');
+            } else if (lowerMessage.includes('ring') || lowerMessage.includes('diamond')) {
+                showBotMessage('Our Diamond Ring (💍) is priced at $2,499 and features:\n✓ 18K Gold\n✓ Certified Diamond\n✓ Lifetime Warranty\n\nWould you like to place an order or know more?');
+            } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
+                showBotMessage('Our prices range from $899 to $3,899. You can view our complete collection on our website.\n\nWould you like details on any specific piece?');
+            } else if (lowerMessage.includes('whatsapp') || lowerMessage.includes('call') || lowerMessage.includes('message')) {
+                showBotMessage('You can reach us on <a href="https://wa.me/919177740833" class="whatsapp-link">WhatsApp: 917-774-0833</a> 📱\n\nOr provide your details and we\'ll call you back!');
+                setTimeout(() => showPhoneForm(), 800);
+            } else if (lowerMessage.includes('yes') || lowerMessage.includes('ok') || lowerMessage.includes('sure')) {
+                showBotMessage('Perfect! 😊 Please provide your contact details so we can assist you better.');
+                setTimeout(() => showPhoneForm(), 600);
+            } else {
+                showBotMessage('Thanks for your interest! 💝\n\nTo provide better assistance, please:\n1. Tell us what you\'re looking for\n2. Provide your contact details\n3. Or chat with us on WhatsApp!');
+                setTimeout(() => {
+                    showBotMessage('Would you like to <a href="https://wa.me/919177740833" class="whatsapp-link">chat on WhatsApp</a>? 📲');
+                }, 600);
+            }
+        }
+
+        function showPhoneForm() {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot';
+            messageDiv.innerHTML = `
+                <div class="input-form">
+                    <input type="text" placeholder="Your Name" id="nameInput" required>
+                    <input type="email" placeholder="Your Email" id="emailInput" required>
+                    <input type="tel" placeholder="Your Phone (with country code)" id="phoneInput" value="+91" required>
+                    <button id="submitContactBtn">Get Callback</button>
+                </div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            document.getElementById('submitContactBtn').addEventListener('click', function() {
+                const name = document.getElementById('nameInput').value;
+                const email = document.getElementById('emailInput').value;
+                const phone = document.getElementById('phoneInput').value;
+
+                if (name && email && phone) {
+                    userPhone = phone;
+                    addMessage(`My details:\n${name}\n${email}\n${phone}`, 'user');
+                    setTimeout(() => {
+                        showBotMessage(`Thank you, ${name}! 🙏\n\nWe have received your details. Our team will contact you within 2 hours.`);
+                    }, 500);
+                    setTimeout(() => {
+                        showBotMessage(`Alternatively, you can chat with us directly on <a href="https://wa.me/919177740833" class="whatsapp-link">WhatsApp: +91-917-774-0833</a> 📱`);
+                    }, 1200);
+                    setTimeout(() => showQuickReplies(), 1800);
+                } else {
+                    alert('Please fill in all fields');
+                }
+            });
+        }
+
+        // Original Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add to cart button feedback
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const originalText = this.textContent;
+                this.textContent = '✓ Added to Cart';
+                this.style.background = '#d4af37';
+                this.style.color = '#1a1a1a';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = '';
+                    this.style.color = '';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
